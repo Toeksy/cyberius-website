@@ -150,7 +150,26 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav {
+                padding: 0.75rem 1rem;
+            }
+            
+            .nav-links { 
+                display: none; 
+            }
+            
+            .logo {
+                font-size: 1rem;
+            }
+            
+            .nav-logo-img {
+                height: 32px;
+            }
+            
+            .nav-cta {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
         }
 
         /* ========================================
@@ -190,6 +209,27 @@
             position: relative;
             animation: ufoFromStar 4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
                        ufoHover 5s ease-in-out 4s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem 1rem 2rem;
+            }
+            
+            .hero-content {
+                padding-top: 10vh;
+            }
+            
+            .hero-logo {
+                height: 250px;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .logo-container {
+                width: 200px;
+                height: 200px;
+            }
         }
 
         /* Varjo logon alle */
@@ -476,6 +516,41 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
+        
+        @media (max-width: 768px) {
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+                margin-top: 2rem;
+                padding-top: 2rem;
+                flex-wrap: wrap;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+        }
 
         /* ========================================
            SECTIONS COMMON
@@ -514,6 +589,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .service-card {
@@ -606,6 +687,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .team-card {
@@ -700,6 +787,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .testimonial-card {
@@ -860,6 +953,12 @@
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 1.5rem;
+            }
         }
 
         .form-group {
@@ -1055,6 +1154,7 @@
             justify-content: center;
             gap: 2rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -1066,6 +1166,13 @@
 
         .footer-links a:hover {
             color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .footer-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
         }
 
         /* ========================================
@@ -1083,19 +1190,30 @@
         }
 
         /* ========================================
-           RESPONSIVE
+           RESPONSIVE (ADDITIONAL)
            ======================================== */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            body {
+                font-size: 14px;
             }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
+            
+            .section {
+                padding: 3rem 1rem;
             }
 
             .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+            
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+            
+            .cta-section h2 {
                 font-size: 2rem;
             }
 

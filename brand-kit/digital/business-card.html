@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="version" content="2025-12-17-7" />
+  <meta name="version" content="2025-12-17-8" />
   <title>Codesphere - Digitaalinen käyntikortti</title>
   <style>
     :root {
@@ -898,8 +898,10 @@
 
     const buildTag = document.getElementById('buildTag');
     if (buildTag) {
-      const v = new URLSearchParams(location.search).get('v');
-      buildTag.textContent = `build ${v || 'main'}`;
+      const params = new URLSearchParams(location.search);
+      const v = params.get('v');
+      const metaV = document.querySelector('meta[name="version"]')?.getAttribute('content');
+      buildTag.textContent = `build ${v || metaV || 'main'}`;
     }
 
     initLangUI();
@@ -940,31 +942,36 @@
       poster.style.display = show ? 'grid' : 'none';
     }
 
+    function beginLoad() {
+      // Always keep the poster visible until the iframe has actually loaded.
+      // This avoids a black screen on slow connections / blocked iframe loads.
+      showPoster(true);
+      loadIframe();
+    }
+
     if (openLive) {
       openLive.addEventListener('click', () => {
-        loadIframe();
-        showPoster(false);
+        beginLoad();
       });
     }
 
     const refreshBtn = document.getElementById('refreshFrame');
     if (refreshBtn) {
       refreshBtn.addEventListener('click', () => {
-        loadIframe();
-        showPoster(false);
+        beginLoad();
       });
     }
 
+    // Always start with poster visible.
+    showPoster(true);
+
     // Auto-load if connection is likely fast; otherwise wait for tap.
     if (shouldAutoLoad()) {
-      loadIframe();
-      showPoster(false);
-    } else {
-      showPoster(true);
+      beginLoad();
     }
 
-    // Fallback timeout: if iframe takes too long, keep poster visible.
-    const fallbackTimer = setTimeout(() => showPoster(true), 2500);
+    // Safety timeout: ensure poster stays visible if iframe doesn't load.
+    const fallbackTimer = setTimeout(() => showPoster(true), 5000);
 
     iframe?.addEventListener('load', () => {
       clearTimeout(fallbackTimer);
@@ -975,8 +982,7 @@
     const AUTO_REFRESH_MS = 120000; // 2 min
     if (shouldAutoLoad() && iframe) {
       setInterval(() => {
-        loadIframe();
-        showPoster(false);
+        beginLoad();
       }, AUTO_REFRESH_MS);
     }
 

@@ -376,13 +376,14 @@
       backdrop-filter: blur(8px);
     }
 
-    /* Portrait mobile: pin content vertically */
-    @media (max-width: 900px) and (orientation: portrait) {
+    /* Small screens: pin content vertically (default). Landscape overrides below. */
+    @media (max-width: 900px) {
       body { padding: 8px; }
       
       .card {
         aspect-ratio: auto;
         min-height: calc(100vh - 16px);
+        min-height: calc(100dvh - 16px);
         border-radius: 20px;
       }
       

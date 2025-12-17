@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="version" content="2025-12-17-5" />
+  <meta name="version" content="2025-12-17-6" />
   <title>Codesphere - Digitaalinen käyntikortti</title>
   <style>
     :root {
@@ -460,6 +460,31 @@
       .viewport { height: calc(100% - 38px); }
     }
 
+    /* Mid landscape (900-1280px width) */
+    @media (min-width: 901px) and (max-width: 1280px) and (orientation: landscape) {
+      body { padding: 14px; display: block; overflow-y: auto; }
+      .card {
+        width: clamp(760px, 90vw, 980px);
+        margin: 0 auto;
+        min-height: auto;
+      }
+      .inner {
+        grid-template-columns: 1.05fr 0.95fr;
+        grid-template-rows: 1fr;
+        gap: 10px;
+      }
+      .left { min-height: 220px; }
+      .right { padding: 0 6px; gap: 8px; }
+      .brand { font-size: clamp(17px, 2vw, 24px); }
+      .sub { font-size: clamp(11px, 1.8vw, 13px); }
+      .people { gap: 8px; }
+      .person .name { font-size: clamp(13px, 1.9vw, 17px); }
+      .person .title { font-size: clamp(10px, 1.7vw, 12px); }
+      .person .phone { font-size: clamp(11px, 1.8vw, 13px); }
+      .footer { font-size: 10.5px; gap: 7px; }
+      .footer a, .footer button { padding: 8px 9px; font-size: 11px; }
+    }
+
     /* Force two columns even on small landscape widths */
     @media (max-width: 900px) and (orientation: landscape) {
       body { padding: 12px; display: block; overflow-y: auto; }
@@ -884,7 +909,7 @@
     const iframe = document.getElementById('site');
     const poster = document.getElementById('poster');
     const openLive = document.getElementById('openLive');
-    const orientationTip = document.getElementById('orientationTip');
+    const orientationTip = null; // tip piilotettu
     const IFRAME_SRC = iframe ? iframe.getAttribute('data-src') : '';
 
     function shouldAutoLoad() {
@@ -955,14 +980,7 @@
       }, AUTO_REFRESH_MS);
     }
 
-    function updateOrientationTip() {
-      if (!orientationTip) return;
-      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
-      orientationTip.style.display = isPortrait ? 'block' : 'none';
-    }
-
-    updateOrientationTip();
-    window.addEventListener('resize', updateOrientationTip);
+    // orientation tip poistettu käytöstä
   </script>
 </body>
 </html>

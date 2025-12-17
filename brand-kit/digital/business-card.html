@@ -168,6 +168,9 @@
       font-family: var(--font);
     }
 
+    .brand-link { text-decoration: none; display: inline-block; }
+    #refreshFrame { white-space: nowrap; }
+
     .footer a:hover { background: rgba(var(--accent-rgb), 0.13); }
     .footer button:hover { background: rgba(var(--accent-rgb), 0.13); }
 
@@ -499,7 +502,7 @@
 
       <section class="right">
         <header>
-          <div class="brand">CODESPHERE</div>
+          <a class="brand brand-link" href="https://codesphere.fi" target="_blank" rel="noopener">CODESPHERE</a>
           <div class="sub" data-i18n="subtitle">Yhteystiedot</div>
           <div class="divider"></div>
         </header>
@@ -530,6 +533,7 @@
               <select class="lang" id="lang" aria-label="Language"></select>
               <a href="contacts.vcf" download data-i18n="downloadVcard">vCard</a>
               <a href="business-card.png" target="_blank" rel="noopener" data-i18n="openPng">Avaa PNG-käyntikortti</a>
+              <button id="refreshFrame" type="button">Päivitä esikatselu</button>
             </div>
             <div class="footer-row" aria-label="Share">
               <span class="share-label" data-i18n="shareLabel">Jaa</span>
@@ -882,10 +886,16 @@
       return true;
     }
 
-    function loadIframe() {
+    function cacheBustedSrc() {
+      if (!IFRAME_SRC) return "";
+      const sep = IFRAME_SRC.includes("?") ? "&" : "?";
+      return `${IFRAME_SRC}${sep}r=${Date.now()}`;
+    }
+
+    function loadIframe(bust = true) {
       if (!iframe || !IFRAME_SRC) return;
-      if (iframe.src === IFRAME_SRC) return;
-      iframe.src = IFRAME_SRC;
+      const nextSrc = bust ? cacheBustedSrc() : IFRAME_SRC;
+      iframe.src = nextSrc;
     }
 
     function showPoster(show) {
@@ -895,6 +905,14 @@
 
     if (openLive) {
       openLive.addEventListener('click', () => {
+        loadIframe();
+        showPoster(false);
+      });
+    }
+
+    const refreshBtn = document.getElementById('refreshFrame');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
         loadIframe();
         showPoster(false);
       });
@@ -915,6 +933,15 @@
       clearTimeout(fallbackTimer);
       showPoster(false);
     });
+
+    // Auto-refresh the iframe periodically to keep preview fresh
+    const AUTO_REFRESH_MS = 120000; // 2 min
+    if (shouldAutoLoad() && iframe) {
+      setInterval(() => {
+        loadIframe();
+        showPoster(false);
+      }, AUTO_REFRESH_MS);
+    }
 
     function updateOrientationTip() {
       if (!orientationTip) return;

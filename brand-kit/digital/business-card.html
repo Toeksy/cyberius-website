@@ -53,14 +53,10 @@
         radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.14), transparent 55%),
         radial-gradient(circle at 80% 70%, rgba(30,58,95,0.18), transparent 55%);
       filter: blur(18px);
-      animation: floatGlow 7s ease-in-out infinite;
       pointer-events: none;
     }
 
-    @keyframes floatGlow {
-      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-      50% { transform: translate3d(24px, -18px, 0) scale(1.02); }
-    }
+
 
     .inner {
       position: absolute;
@@ -234,17 +230,13 @@
       inset: 0;
       background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.06), transparent 62%);
       transform: translateX(-65%);
-      animation: sheen 6.5s ease-in-out infinite;
+      opacity: 0;
       pointer-events: none;
       mix-blend-mode: screen;
       opacity: 0.85;
     }
 
-    @keyframes sheen {
-      0%, 35% { transform: translateX(-70%); opacity: 0; }
-      50% { opacity: 0.95; }
-      70%, 100% { transform: translateX(70%); opacity: 0; }
-    }
+
 
     .topbar {
       height: 46px;
@@ -288,7 +280,7 @@
       inset: 0;
       background: linear-gradient(90deg, transparent 0%, rgba(var(--accent-rgb), 0.12) 50%, transparent 100%);
       transform: translateX(-100%);
-      animation: addrGlow 4.8s ease-in-out infinite;
+      opacity: 0;
     }
 
     @keyframes addrGlow {
@@ -732,7 +724,7 @@
     initLangUI();
     applyLang(pickInitialLang());
 
-    // Tee kortista "elävä": yritä skrollata iframe-sisältöä (vain jos sama origin).
+    // Iframe fallback-esikatselu (ilman automaattista scrollausta)
     const iframe = document.getElementById('site');
     const fallback = document.getElementById('fallback');
 
@@ -750,30 +742,7 @@
       // Piilota fallback jos päästiin tähän.
       if (fallback) fallback.style.display = 'none';
 
-      try {
-        const doc = iframe.contentDocument;
-        if (!doc) return;
-
-        let y = 0;
-        let dir = 1;
-
-        const tick = () => {
-          const max = Math.max(0, (doc.documentElement.scrollHeight || doc.body.scrollHeight || 0) - iframe.clientHeight);
-          if (max <= 0) return;
-
-          y += dir * 1.2;
-          if (y >= max) { y = max; dir = -1; }
-          if (y <= 0) { y = 0; dir = 1; }
-
-          doc.documentElement.scrollTop = y;
-          doc.body.scrollTop = y;
-        };
-
-        setInterval(tick, 30);
-      } catch {
-        // File:// tai eri-origin voi estää pääsyn → näytetään fallback.
-        showFallback();
-      }
+      // Staattinen esikatselu - ei automaattista scrollausta
     });
   </script>
 </body>

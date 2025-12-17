@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="version" content="2025-12-17-8" />
+  <meta name="version" content="2025-12-17-9" />
   <title>Codesphere - Digitaalinen käyntikortti</title>
   <style>
     :root {
@@ -169,7 +169,6 @@
     }
 
     .brand-link { text-decoration: none; display: inline-block; }
-    #refreshFrame { white-space: nowrap; }
 
     .footer a:hover { background: rgba(var(--accent-rgb), 0.13); }
     .footer button:hover { background: rgba(var(--accent-rgb), 0.13); }
@@ -304,37 +303,41 @@
       height: calc(100% - 46px);
       background: #000;
       position: relative;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #000;
-    }
-
-    .poster {
-      position: absolute;
-      inset: 0;
+      padding: 12px;
       display: grid;
-      place-items: center;
-      background: #000;
-      gap: 14px;
-      padding: 16px;
-      text-align: center;
-      color: rgba(241,245,249,0.92);
+      grid-template-rows: 1fr auto;
+      gap: 12px;
     }
 
-    .poster img {
+    .preview {
+      min-height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(var(--accent-rgb), 0.15);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      background: #000;
+    }
+
+    .preview img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid rgba(var(--accent-rgb), 0.15);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      display: block;
     }
 
-    .poster button {
+    .open-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .open-site {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
       border: 1px solid rgba(var(--accent-rgb), 0.28);
       background: rgba(var(--accent-rgb), 0.08);
@@ -345,11 +348,13 @@
       cursor: pointer;
       font-family: var(--font);
       letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
-    .poster button:hover { background: rgba(var(--accent-rgb), 0.13); }
+    .open-site:hover { background: rgba(var(--accent-rgb), 0.13); }
 
-    .hint {
+    .open-hint {
       font-size: 11px;
       color: rgba(241,245,249,0.72);
       background: rgba(0,0,0,0.35);
@@ -527,12 +532,13 @@
             <select class="lang top" id="langTop" aria-label="Language"></select>
           </div>
           <div class="viewport">
-            <iframe id="site" title="Codesphere-sivusto" data-src="../../index.html" loading="lazy"></iframe>
-            <div class="poster" id="poster">
-              <img src="../social/og.png" alt="Codesphere esikatselu" />
-              <button id="openLive">Avaa live-versio</button>
-              <div class="hint">Hidas yhteys? Näytä staattinen esikatselu.</div>
-            </div>
+              <div class="preview" aria-label="Staattinen esikatselu">
+                <img src="../social/og.png" alt="Codesphere esikatselu" />
+              </div>
+              <div class="open-row">
+                <a class="open-site" href="https://codesphere.fi" target="_blank" rel="noopener">Avaa codesphere.fi</a>
+                <span class="open-hint">Staattinen esikatselu (mobiiliystävällinen)</span>
+              </div>
           </div>
         </div>
       </section>
@@ -570,7 +576,6 @@
               <select class="lang" id="lang" aria-label="Language"></select>
               <a href="contacts.vcf" download data-i18n="downloadVcard">vCard</a>
               <a href="business-card.png" target="_blank" rel="noopener" data-i18n="openPng">Avaa PNG-käyntikortti</a>
-              <button id="refreshFrame" type="button">Päivitä esikatselu</button>
             </div>
             <div class="footer-row" aria-label="Share">
               <span class="share-label" data-i18n="shareLabel">Jaa</span>
@@ -907,86 +912,7 @@
     initLangUI();
     applyLang(pickInitialLang());
 
-    // Iframe fallback-esikatselu (ilman automaattista scrollausta)
-    const iframe = document.getElementById('site');
-    const poster = document.getElementById('poster');
-    const openLive = document.getElementById('openLive');
-    const orientationTip = null; // tip piilotettu
-    const IFRAME_SRC = iframe ? iframe.getAttribute('data-src') : '';
-
-    function shouldAutoLoad() {
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      // iOS/Safari: Network Information API puuttuu usein. Oletus: auto-load myös pienillä ruuduilla,
-      // ellei käyttäjä ole kytkenyt säästötilaa (saveData).
-      if (!conn) return true;
-      if (conn.saveData) return false;
-      if (typeof conn.downlink === 'number') return conn.downlink >= 2.5;
-      if (conn.effectiveType) return ['4g', 'wifi'].includes(conn.effectiveType);
-      return true;
-    }
-
-    function cacheBustedSrc() {
-      if (!IFRAME_SRC) return "";
-      const sep = IFRAME_SRC.includes("?") ? "&" : "?";
-      return `${IFRAME_SRC}${sep}r=${Date.now()}`;
-    }
-
-    function loadIframe(bust = true) {
-      if (!iframe || !IFRAME_SRC) return;
-      const nextSrc = bust ? cacheBustedSrc() : IFRAME_SRC;
-      iframe.src = nextSrc;
-    }
-
-    function showPoster(show) {
-      if (!poster) return;
-      poster.style.display = show ? 'grid' : 'none';
-    }
-
-    function beginLoad() {
-      // Always keep the poster visible until the iframe has actually loaded.
-      // This avoids a black screen on slow connections / blocked iframe loads.
-      showPoster(true);
-      loadIframe();
-    }
-
-    if (openLive) {
-      openLive.addEventListener('click', () => {
-        beginLoad();
-      });
-    }
-
-    const refreshBtn = document.getElementById('refreshFrame');
-    if (refreshBtn) {
-      refreshBtn.addEventListener('click', () => {
-        beginLoad();
-      });
-    }
-
-    // Always start with poster visible.
-    showPoster(true);
-
-    // Auto-load if connection is likely fast; otherwise wait for tap.
-    if (shouldAutoLoad()) {
-      beginLoad();
-    }
-
-    // Safety timeout: ensure poster stays visible if iframe doesn't load.
-    const fallbackTimer = setTimeout(() => showPoster(true), 5000);
-
-    iframe?.addEventListener('load', () => {
-      clearTimeout(fallbackTimer);
-      showPoster(false);
-    });
-
-    // Auto-refresh the iframe periodically to keep preview fresh
-    const AUTO_REFRESH_MS = 120000; // 2 min
-    if (shouldAutoLoad() && iframe) {
-      setInterval(() => {
-        beginLoad();
-      }, AUTO_REFRESH_MS);
-    }
-
-    // orientation tip poistettu käytöstä
+    // Live-esikatselu (iframe) poistettu mobiilisujuvuuden vuoksi.
   </script>
 </body>
 </html>

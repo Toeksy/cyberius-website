@@ -152,7 +152,7 @@
       <div class="device-header"><span>1 · Mobiili (pysty)</span><span>393 × 852</span></div>
       <div class="frame" style="width: 100%; height: 600px;">
         <div class="label">Phone · portrait</div>
-        <iframe src="brand-kit/digital/business-card.html?v=2025-12-17-9" title="Mobiili pysty" data-base-scale="0.65" style="width: 393px; height: 852px; transform: scale(0.65); transform-origin: top left;"></iframe>
+        <iframe src="brand-kit/digital/business-card.html?v=2025-12-17-9" title="Mobiili pysty" data-vw="393" data-vh="852" style="width: 393px; height: 852px; transform-origin: top left;"></iframe>
       </div>
       <p class="hint">Pystytila: koko kortti näkyy yhdellä sivulla. Esikatselu on staattinen ja "Avaa sivusto" avaa sivun uuteen välilehteen.</p>
     </article>
@@ -161,7 +161,7 @@
       <div class="device-header"><span>2 · Mobiili (vaaka)</span><span>852 × 393</span></div>
       <div class="frame" style="width: 100%; height: 380px; justify-content: flex-start;">
         <div class="label">Phone · landscape</div>
-        <iframe src="brand-kit/digital/business-card.html?v=2025-12-17-9" title="Mobiili vaaka" data-base-scale="0.72" style="width: 852px; height: 393px; transform: scale(0.72); transform-origin: top left; position: absolute; left: 0; top: 0;"></iframe>
+        <iframe src="brand-kit/digital/business-card.html?v=2025-12-17-9" title="Mobiili vaaka" data-vw="852" data-vh="393" style="width: 852px; height: 393px; transform-origin: top left;"></iframe>
       </div>
       <p class="hint">Vaakatila: kaksi palstaa, kontaktit oikealla. Esikatselu on staattinen ja linkki avaa sivun erikseen.</p>
     </article>
@@ -170,7 +170,7 @@
       <div class="device-header"><span>3 · Selain</span><span>1366 × 768</span></div>
       <div class="frame" style="width: 100%; height: 520px;">
         <div class="label">Desktop · browser</div>
-        <iframe src="index.html?v=2025-12-17-9" title="Desktop" data-base-scale="0.5" style="width: 1366px; height: 768px; transform: scale(0.5); transform-origin: top left;"></iframe>
+        <iframe src="index.html?v=2025-12-17-9" title="Desktop" data-vw="1366" data-vh="768" style="width: 1366px; height: 768px; transform-origin: top left;"></iframe>
       </div>
       <p class="hint">Selain: näyttää `index.html` (sama teema kuin sivustolla).</p>
     </article>
@@ -180,17 +180,34 @@
     const buttons = document.querySelectorAll('.button[data-scale]');
     const frames = document.querySelectorAll('iframe');
 
+    let currentMultiplier = 1;
+
+    function fitFrames() {
+      frames.forEach(f => {
+        const vw = parseFloat(f.dataset.vw || `${parseFloat(f.style.width) || 0}`);
+        const vh = parseFloat(f.dataset.vh || `${parseFloat(f.style.height) || 0}`);
+        const frame = f.parentElement;
+        if (!vw || !vh || !frame) return;
+
+        const frameWidth = frame.clientWidth;
+        const frameHeight = frame.clientHeight;
+        if (!frameWidth || !frameHeight) return;
+
+        // Fit the virtual viewport fully inside the visible frame.
+        const baseScale = Math.max(0.1, Math.min(frameWidth / vw, frameHeight / vh));
+        const scale = baseScale * currentMultiplier;
+        f.style.transform = `scale(${scale})`;
+      });
+    }
+
+    window.addEventListener('resize', fitFrames);
+    window.addEventListener('load', fitFrames);
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const multiplier = parseFloat(btn.dataset.scale || '1');
+        currentMultiplier = parseFloat(btn.dataset.scale || '1');
         buttons.forEach(b => b.classList.toggle('active', b === btn));
-        frames.forEach(f => {
-          const baseHeight = parseFloat(f.style.height);
-          const baseScale = parseFloat(f.dataset.baseScale || '1');
-          const scale = baseScale * multiplier;
-          f.style.transform = `scale(${scale})`;
-          f.parentElement.style.height = `${baseHeight * scale + 30}px`;
-        });
+        fitFrames();
       });
     });
   </script>

@@ -30,6 +30,13 @@
       display: grid;
       place-items: center;
       padding: 24px;
+      overflow-x: hidden;
+    }
+
+    /* Short viewports (e.g., phone landscape): avoid vertical centering + forced aspect ratio */
+    @media (max-height: 520px) {
+      body { display: block; overflow-y: auto; padding: 12px; }
+      .card { aspect-ratio: auto; margin: 0 auto; }
     }
 
     .card {

@@ -138,6 +138,12 @@
       align-items: center;
     }
 
+    .build {
+      color: rgba(148, 163, 184, 0.75);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
     .footer a {
       color: var(--accent);
       text-decoration: none;
@@ -515,6 +521,7 @@
 
         <div class="footer">
           <div data-i18n="tagline">codesphere | globaalia ohjelmistokehitystä</div>
+          <div class="build" id="buildTag" aria-label="Build"></div>
           <div class="footer-actions">
             <div class="footer-row">
               <select class="lang" id="lang" aria-label="Language"></select>
@@ -844,6 +851,10 @@
       } catch {}
       return normalizeLang(navigator.language || 'fi');
     }
+
+    const BUILD = 'f757071';
+    const buildTag = document.getElementById('buildTag');
+    if (buildTag) buildTag.textContent = `build ${BUILD}`;
 
     initLangUI();
     applyLang(pickInitialLang());

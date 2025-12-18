@@ -18,11 +18,11 @@ import json
 from pathlib import Path
 
 
-MARKER = "## (Lisää tulevat sessionit tänne)"
+MARKER = "## (Lis\u00e4\u00e4 tulevat sessionit t\u00e4nne)"
 
 
 def fail(message: str) -> int:
-    print(f"❌ TRM check failed: {message}")
+    print(f"[FAIL] TRM check: {message}")
     return 1
 
 
@@ -63,7 +63,7 @@ def main() -> int:
             "Finalize script expects this marker for insertion."
         )
 
-    print("✅ TRM check OK")
+    print("[OK] TRM check passed")
     return 0
 
 
@@ -73,5 +73,5 @@ if __name__ == "__main__":
     except SystemExit:
         raise
     except Exception as exc:
-        print(f"❌ TRM check crashed: {exc}")
+        print(f"[ERROR] TRM check crashed: {exc}")
         raise SystemExit(2)

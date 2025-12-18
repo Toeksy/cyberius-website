@@ -132,6 +132,34 @@
       margin: 6px 0 0;
       line-height: 1.5;
     }
+
+    #buildBadge {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 9999;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.35;
+      max-width: min(92vw, 420px);
+      backdrop-filter: blur(6px);
+    }
+
+    #buildBadge code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    #buildBadge a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -176,9 +204,13 @@
     </article>
   </section>
 
+  <div id="buildBadge" aria-label="Build marker"></div>
+
   <script>
     const buttons = document.querySelectorAll('.button[data-scale]');
     const frames = document.querySelectorAll('iframe');
+
+    const buildBadge = document.getElementById('buildBadge');
 
     let currentMultiplier = 1;
 
@@ -210,6 +242,33 @@
         fitFrames();
       });
     });
+
+    function updateBuildBadge() {
+      if (!buildBadge) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get('v') || '(none)';
+      const loaded = new Date();
+
+      const stamp = `${loaded.getFullYear()}-${String(loaded.getMonth() + 1).padStart(2, '0')}-${String(loaded.getDate()).padStart(2, '0')} ${String(loaded.getHours()).padStart(2, '0')}:${String(loaded.getMinutes()).padStart(2, '0')}:${String(loaded.getSeconds()).padStart(2, '0')}`;
+
+      buildBadge.innerHTML = '';
+      const title = document.createElement('div');
+      title.innerHTML = `<strong>Build marker</strong> · <code>v=${v}</code>`;
+
+      const time = document.createElement('div');
+      time.innerHTML = `<code>loaded=${stamp}</code>`;
+
+      const hint = document.createElement('div');
+      hint.style.marginTop = '4px';
+      hint.innerHTML = `Tip: open this page as <a href="?v=${encodeURIComponent(v === '(none)' ? 'dev' : v)}">?v=…</a> to bust caches.`;
+
+      buildBadge.appendChild(title);
+      buildBadge.appendChild(time);
+      buildBadge.appendChild(hint);
+    }
+
+    updateBuildBadge();
   </script>
 </body>
 </html>

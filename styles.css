@@ -873,6 +873,38 @@ h4 { font-size: 1.25rem; }
 .mb-2 { margin-bottom: var(--spacing-xl); }
 
 /* ========================================
+   PARTNER MODEL SECTION
+   ======================================== */
+.partner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.partner-box {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+}
+
+.partner-box--premium {
+    border-color: rgba(var(--accent-rgb), 0.35);
+    background: rgba(var(--accent-rgb), 0.08);
+}
+
+@media (max-width: 768px) {
+    .partner-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .partner-box {
+        padding: 1.25rem;
+    }
+}
+
+/* ========================================
    ANIMATIONS
    ======================================== */
 @keyframes fadeInUp {

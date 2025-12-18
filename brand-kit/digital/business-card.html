@@ -413,25 +413,138 @@
 
     .orientation-tip { display: none !important; }
 
+    /* Mobile hero: animated space background + logo (shown only on mobile) */
+    .mobile-hero {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      border-radius: 18px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .mobile-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 30% 20%, rgba(var(--accent-rgb), 0.18), transparent 50%),
+        radial-gradient(ellipse 100% 70% at 75% 80%, rgba(30, 58, 95, 0.25), transparent 50%);
+      animation: heroPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes heroPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+
+    /* Animated stars */
+    .mobile-hero .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 80% 50%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 90% 10%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 30% 50%, rgba(var(--accent-rgb), 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 70% 35%, rgba(var(--accent-rgb), 0.5), transparent);
+      background-size: 100% 100%;
+      animation: starsTwinkle 4s ease-in-out infinite;
+    }
+
+    @keyframes starsTwinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .mobile-hero .hero-logo {
+      position: relative;
+      z-index: 1;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      font-size: clamp(32px, 10vw, 48px);
+      background: linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(var(--accent-rgb), 0.4);
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(var(--accent-rgb), 0.3)); }
+      50% { filter: drop-shadow(0 0 35px rgba(var(--accent-rgb), 0.5)); }
+    }
+
+    .mobile-hero .hero-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--accent);
+      border: 2px solid rgba(var(--accent-rgb), 0.4);
+      background: rgba(var(--accent-rgb), 0.1);
+      padding: 14px 28px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      font-family: var(--font);
+      letter-spacing: 0.02em;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.15);
+    }
+
+    .mobile-hero .hero-btn:hover,
+    .mobile-hero .hero-btn:active {
+      background: rgba(var(--accent-rgb), 0.2);
+      border-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.25);
+      transform: scale(1.02);
+    }
+
+    .mobile-hero .hero-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
     /* Narrow screens: stack content vertically */
     @media (max-width: 720px) {
       .fit-stage { padding: 8px; }
       
       .card {
         aspect-ratio: auto;
-        min-height: calc(100vh - 16px);
+        width: calc(100vw - 16px);
+        height: auto;
         min-height: calc(100dvh - 16px);
+        max-width: none;
+        max-height: none;
         border-radius: 20px;
       }
       
       .inner {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto 1fr;
         gap: 14px;
         inset: 12px;
       }
       
-      .left { min-height: 300px; }
+      /* Hide browser, show mobile hero */
+      .browser { display: none !important; }
+      .mobile-hero { display: flex !important; }
+      
+      .left { min-height: 220px; }
       .right { padding: 0; gap: 10px; }
       
       .brand { font-size: clamp(22px, 4.5vw, 30px); }
@@ -593,6 +706,7 @@
         <div class="orientation-tip" id="orientationTip">Paras kokemus vaakana</div>
         <div class="inner">
         <section class="left">
+          <!-- Desktop/Tablet: Browser mock -->
           <div class="browser" aria-label="Selaimen esikatselu: Codesphere-sivusto">
             <div class="topbar">
               <div class="dots" aria-hidden="true">
@@ -613,6 +727,16 @@
                   <span class="open-hint">Staattinen esikatselu (mobiiliystävällinen)</span>
                 </div>
             </div>
+          </div>
+
+          <!-- Mobile: Animated space hero -->
+          <div class="mobile-hero" aria-label="Codesphere">
+            <div class="stars"></div>
+            <div class="hero-logo">CODESPHERE</div>
+            <a class="hero-btn" href="https://toeksy.github.io/codesphere-website_1/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+              <span data-i18n="openSite">Avaa sivusto</span>
+            </a>
           </div>
         </section>
 
@@ -686,6 +810,7 @@
         tagline: 'codesphere | globaalia ohjelmistokehitystä',
         downloadVcard: 'vCard',
         openPng: 'Avaa PNG-käyntikortti',
+        openSite: 'Avaa sivusto',
         shareLabel: 'Jaa',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -703,6 +828,7 @@
         tagline: 'codesphere | global software development',
         downloadVcard: 'vCard',
         openPng: 'Open PNG card',
+        openSite: 'Open website',
         shareLabel: 'Share',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -720,6 +846,7 @@
         tagline: 'codesphere | global mjukvaruutveckling',
         downloadVcard: 'vCard',
         openPng: 'Öppna PNG-kort',
+        openSite: 'Öppna webbplats',
         shareLabel: 'Dela',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -737,6 +864,7 @@
         tagline: 'codesphere | global programvareutvikling',
         downloadVcard: 'vCard',
         openPng: 'Åpne PNG-kort',
+        openSite: 'Åpne nettsted',
         shareLabel: 'Del',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -754,6 +882,7 @@
         tagline: 'codesphere | global softwareudvikling',
         downloadVcard: 'vCard',
         openPng: 'Åbn PNG-kort',
+        openSite: 'Åbn hjemmeside',
         shareLabel: 'Del',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -771,6 +900,7 @@
         tagline: 'codesphere | alþjóðleg hugbúnaðarþróun',
         downloadVcard: 'vCard',
         openPng: 'Opna PNG spjald',
+        openSite: 'Opna vefsíðu',
         shareLabel: 'Deila',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -788,6 +918,7 @@
         tagline: 'codesphere | globale Softwareentwicklung',
         downloadVcard: 'vCard',
         openPng: 'PNG-Karte öffnen',
+        openSite: 'Website öffnen',
         shareLabel: 'Teilen',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -805,6 +936,7 @@
         tagline: 'codesphere | desarrollo de software global',
         downloadVcard: 'vCard',
         openPng: 'Abrir tarjeta PNG',
+        openSite: 'Abrir sitio web',
         shareLabel: 'Compartir',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',
@@ -822,6 +954,7 @@
         tagline: 'codesphere | تطوير برمجيات عالمي',
         downloadVcard: 'vCard',
         openPng: 'فتح بطاقة PNG',
+        openSite: 'فتح الموقع',
         shareLabel: 'مشاركة',
         shareWhatsApp: 'WhatsApp',
         shareFacebook: 'Facebook',

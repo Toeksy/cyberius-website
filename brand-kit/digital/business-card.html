@@ -484,6 +484,15 @@
       animation: logoGlow 3s ease-in-out infinite;
     }
 
+    .left .mobile-hero .hero-icon {
+      position: relative;
+      z-index: 1;
+      width: clamp(60px, 18vw, 100px);
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(var(--accent-rgb), 0.4));
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
     @keyframes logoGlow {
       0%, 100% { filter: drop-shadow(0 0 20px rgba(var(--accent-rgb), 0.3)); }
       50% { filter: drop-shadow(0 0 35px rgba(var(--accent-rgb), 0.5)); }
@@ -698,19 +707,31 @@
 
     /* Very short landscape: reduce inner insets so all contacts fit. */
     @media (max-height: 520px) and (orientation: landscape) {
-      .inner { inset: 14px; gap: 10px; }
-      .divider { margin: 10px 0 12px; }
-      .right { padding: 0 4px; }
-      .footer { gap: 6px; }
-      .footer-actions { gap: 6px; }
-      .footer-row { gap: 6px; }
-      .footer a, .footer button { padding: 6px 8px; font-size: 10.5px; }
-      .lang { padding: 6px 8px; font-size: 10.5px; }
-      .open-site { padding: 8px 10px; font-size: 12px; }
-      .open-hint { padding: 5px 8px; }
-      .topbar { height: 34px; padding: 7px 9px; }
-      .addr { height: 22px; font-size: 10.5px; }
-      .viewport { height: calc(100% - 34px); }
+      .card {
+        height: calc(100dvh - 24px);
+        width: auto;
+        aspect-ratio: 1050 / 600;
+      }
+      .inner { inset: 10px; gap: 8px; }
+      .divider { margin: 6px 0 8px; }
+      .right { padding: 0 4px; gap: 4px; }
+      .brand { font-size: clamp(14px, 2.5vh, 18px); }
+      .sub { font-size: clamp(9px, 1.8vh, 11px); }
+      .people { gap: 4px; }
+      .person .name { font-size: clamp(10px, 2vh, 13px); }
+      .person .title { font-size: clamp(8px, 1.5vh, 10px); }
+      .person .phone { font-size: clamp(9px, 1.6vh, 11px); }
+      .footer { gap: 4px; font-size: 9px; }
+      .footer-actions { gap: 4px; }
+      .footer-row { gap: 4px; }
+      .footer a, .footer button { padding: 5px 6px; font-size: 9px; }
+      .lang { padding: 5px 6px; font-size: 9px; }
+      
+      /* Smaller hero elements in landscape */
+      .left .mobile-hero { gap: 10px; min-height: 0; }
+      .left .mobile-hero .hero-icon { width: clamp(40px, 12vh, 70px); }
+      .left .mobile-hero .hero-logo { font-size: clamp(18px, 5vh, 28px); }
+      .left .mobile-hero .hero-btn { padding: 8px 14px; font-size: 11px; }
     }
   </style>
 </head>
@@ -747,6 +768,7 @@
           <!-- Mobile: Animated space hero -->
           <div class="mobile-hero" aria-label="Codesphere">
             <div class="stars"></div>
+            <img class="hero-icon" src="../logo/codesphere-logo-512-transparent.png" alt="Codesphere logo" />
             <div class="hero-logo">CODESPHERE</div>
             <a class="hero-btn" href="https://toeksy.github.io/codesphere-website_1/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>

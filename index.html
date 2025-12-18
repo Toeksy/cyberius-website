@@ -218,7 +218,7 @@
                 radial-gradient(1100px 650px at 90% 85%, rgba(30, 58, 95, 0.20), transparent 60%);
         }
 
-        /* Space theme: twinkling stars + occasional shooting star */
+        /* Space theme: twinkling stars + occasional logo flyby */
         .bg-space-overlay::after {
             content: "";
             position: absolute;
@@ -241,8 +241,28 @@
                 radial-gradient(1px 1px at 52% 74%, rgba(180,255,255,0.40), transparent 60%),
                 radial-gradient(2px 2px at 66% 82%, rgba(255,255,255,0.42), transparent 60%),
                 radial-gradient(1px 1px at 74% 60%, rgba(200,255,255,0.36), transparent 60%),
-                radial-gradient(1px 1px at 88% 72%, rgba(255,255,255,0.45), transparent 60%);
-            opacity: 0.55;
+                radial-gradient(1px 1px at 88% 72%, rgba(255,255,255,0.45), transparent 60%),
+                radial-gradient(1px 1px at 6% 28%, rgba(200,255,255,0.40), transparent 60%),
+                radial-gradient(2px 2px at 12% 44%, rgba(255,255,255,0.44), transparent 60%),
+                radial-gradient(1px 1px at 18% 10%, rgba(180,255,255,0.35), transparent 60%),
+                radial-gradient(1px 1px at 28% 52%, rgba(255,255,255,0.40), transparent 60%),
+                radial-gradient(2px 2px at 32% 86%, rgba(200,255,255,0.34), transparent 60%),
+                radial-gradient(1px 1px at 44% 58%, rgba(255,255,255,0.38), transparent 60%),
+                radial-gradient(1px 1px at 46% 8%, rgba(180,255,255,0.30), transparent 60%),
+                radial-gradient(2px 2px at 58% 12%, rgba(255,255,255,0.36), transparent 60%),
+                radial-gradient(1px 1px at 60% 92%, rgba(200,255,255,0.32), transparent 60%),
+                radial-gradient(1px 1px at 68% 52%, rgba(255,255,255,0.34), transparent 60%),
+                radial-gradient(2px 2px at 72% 76%, rgba(180,255,255,0.30), transparent 60%),
+                radial-gradient(1px 1px at 82% 50%, rgba(255,255,255,0.34), transparent 60%),
+                radial-gradient(1px 1px at 92% 10%, rgba(200,255,255,0.28), transparent 60%),
+                radial-gradient(2px 2px at 96% 58%, rgba(255,255,255,0.32), transparent 60%),
+                radial-gradient(1px 1px at 8% 88%, rgba(180,255,255,0.28), transparent 60%),
+                radial-gradient(1px 1px at 20% 92%, rgba(255,255,255,0.30), transparent 60%),
+                radial-gradient(2px 2px at 40% 40%, rgba(200,255,255,0.30), transparent 60%),
+                radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.32), transparent 60%),
+                radial-gradient(1px 1px at 76% 6%, rgba(180,255,255,0.26), transparent 60%),
+                radial-gradient(2px 2px at 86% 90%, rgba(255,255,255,0.30), transparent 60%);
+            opacity: 0.62;
             animation: spaceTwinkle 4.8s ease-in-out infinite;
             filter: drop-shadow(0 0 8px rgba(120, 220, 255, 0.18));
         }
@@ -250,19 +270,19 @@
         .bg-space-overlay::before {
             content: "";
             position: absolute;
-            width: 220px;
-            height: 2px;
-            left: -30vw;
-            top: -20vh;
+            width: 52px;
+            height: 52px;
+            left: -20vw;
+            top: 18vh;
             pointer-events: none;
             opacity: 0;
-            transform: rotate(-28deg);
-            background: linear-gradient(90deg,
-                rgba(255,255,255,0),
-                rgba(180,255,255,0.85),
-                rgba(255,255,255,0));
-            filter: drop-shadow(0 0 10px rgba(120, 220, 255, 0.35));
-            animation: shootingStar 14s linear infinite;
+            transform: translate3d(0, 0, 0) rotate(-12deg) scale(0.95);
+            background-image: url('codesphere-logo-64.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 18px rgba(120, 220, 255, 0.30)) blur(0.2px);
+            animation: logoFlyby 16s linear infinite;
         }
 
         @keyframes spaceTwinkle {
@@ -270,21 +290,25 @@
             50% { opacity: 0.75; transform: translateY(-2px); }
         }
 
-        @keyframes shootingStar {
-            0%, 72% {
+        @keyframes logoFlyby {
+            0%, 78% {
                 opacity: 0;
-                transform: translate3d(0, 0, 0) rotate(-28deg);
+                transform: translate3d(0, 0, 0) rotate(-12deg) scale(0.92);
             }
-            74% {
-                opacity: 1;
+            79% {
+                opacity: 0.85;
             }
-            78% {
+            82% {
+                opacity: 0.85;
+                transform: translate3d(130vw, 48vh, 0) rotate(-12deg) scale(1);
+            }
+            84% {
                 opacity: 0;
-                transform: translate3d(160vw, 140vh, 0) rotate(-28deg);
+                transform: translate3d(150vw, 56vh, 0) rotate(-12deg) scale(1.02);
             }
             100% {
                 opacity: 0;
-                transform: translate3d(160vw, 140vh, 0) rotate(-28deg);
+                transform: translate3d(150vw, 56vh, 0) rotate(-12deg) scale(1.02);
             }
         }
         

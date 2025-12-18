@@ -490,10 +490,11 @@
     .left .mobile-hero .hero-icon {
       position: relative;
       z-index: 1;
-      width: clamp(150px, 44vw, 250px);
+      width: clamp(188px, 55vw, 313px); /* 25% isompi */
       height: auto;
       filter: drop-shadow(0 0 30px rgba(var(--accent-rgb), 0.6));
       animation: logoGlow 3s ease-in-out infinite;
+      margin-top: clamp(47px, 14vw, 78px); /* 1/4 logon verran alaspäin */
     }
 
     @keyframes logoGlow {
@@ -698,7 +699,7 @@
       .footer { font-size: 9px; gap: 4px; display: none; }
       
       /* Hero isommaksi landscapessa */
-      .left .mobile-hero .hero-icon { width: clamp(55px, 18vw, 100px); }
+      .left .mobile-hero .hero-icon { width: clamp(69px, 22.5vw, 125px); margin-top: clamp(17px, 5.6vw, 31px); } /* 25% isompi, 1/4 alaspäin */
       .left .mobile-hero .hero-logo { font-size: clamp(16px, 4.5vw, 28px); letter-spacing: 0.4em; }
     }
 
@@ -757,7 +758,7 @@
         padding: 6px;
         justify-content: center;
       }
-      .left .mobile-hero .hero-icon { width: clamp(50px, 16vh, 85px); }
+      .left .mobile-hero .hero-icon { width: clamp(63px, 20vh, 106px); margin-top: clamp(16px, 5vh, 27px); } /* 25% isompi, 1/4 alaspäin */
       .left .mobile-hero .hero-logo { font-size: clamp(14px, 4vh, 22px); letter-spacing: 0.4em; }
       .left .mobile-hero .hero-btn { display: none; } /* Hide button in tight landscape */
     }

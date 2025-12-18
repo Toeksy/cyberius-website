@@ -1,7 +1,6 @@
 Param(
   [string]$Image = 'mcr.microsoft.com/playwright:latest',
-  [string]$PlaywrightVersion = '1.46.1',
-  [int]$Port = 4173
+  [string]$PlaywrightVersion = '1.46.1'
 )
 
 $ErrorActionPreference = 'Stop'

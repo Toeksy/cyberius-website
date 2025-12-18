@@ -549,6 +549,23 @@
         min-height: 0;
       }
     }
+
+    /* Very short landscape: reduce inner insets so all contacts fit. */
+    @media (max-height: 520px) and (orientation: landscape) {
+      .inner { inset: 14px; gap: 10px; }
+      .divider { margin: 10px 0 12px; }
+      .right { padding: 0 4px; }
+      .footer { gap: 6px; }
+      .footer-actions { gap: 6px; }
+      .footer-row { gap: 6px; }
+      .footer a, .footer button { padding: 6px 8px; font-size: 10.5px; }
+      .lang { padding: 6px 8px; font-size: 10.5px; }
+      .open-site { padding: 8px 10px; font-size: 12px; }
+      .open-hint { padding: 5px 8px; }
+      .topbar { height: 34px; padding: 7px 9px; }
+      .addr { height: 22px; font-size: 10.5px; }
+      .viewport { height: calc(100% - 34px); }
+    }
   </style>
 </head>
 <body>

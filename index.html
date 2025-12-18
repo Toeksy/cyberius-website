@@ -312,8 +312,11 @@
         @keyframes snowfall-anim {
             0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
+            25% { transform: translateY(22vh) translateX(18px) rotate(90deg); }
+            50% { transform: translateY(55vh) translateX(-12px) rotate(180deg); }
+            75% { transform: translateY(85vh) translateX(14px) rotate(270deg); }
             90% { opacity: 1; }
-            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(110vh) translateX(-8px) rotate(360deg); opacity: 0; }
         }
         
         /* Leaves for Nature theme */
@@ -3348,9 +3351,9 @@
             el.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (1.3 + Math.random() * 0.9) + 'em';
-            el.style.animationDuration = (5 + Math.random() * 2.5) + 's';
+            el.style.animationDuration = (9 + Math.random() * 7) + 's';
             particlesContainer.appendChild(el);
-            setTimeout(() => el.remove(), 12000);
+            setTimeout(() => el.remove(), 22000);
         }
         
         function createLeaf() {
@@ -3388,20 +3391,20 @@
             
             switch(theme) {
                 case 'winter':
-                    for (let i = 0; i < 55; i++) setTimeout(createSnowflake, i * 90);
-                    particleIntervals.push(setInterval(createSnowflake, 560));
+                    for (let i = 0; i < 39; i++) setTimeout(createSnowflake, i * 110);
+                    particleIntervals.push(setInterval(createSnowflake, 800));
                     console.log('Winter snowflakes started');
                     setTimeout(() => console.log('flakes count', document.querySelectorAll('.snowflake').length), 1200);
                     break;
                 case 'nature':
-                    for (let i = 0; i < 20; i++) setTimeout(createLeaf, i * 240);
-                    particleIntervals.push(setInterval(createLeaf, 1440));
+                    for (let i = 0; i < 14; i++) setTimeout(createLeaf, i * 320);
+                    particleIntervals.push(setInterval(createLeaf, 2100));
                     console.log('Nature leaves started');
                     setTimeout(() => console.log('leaf count', document.querySelectorAll('.leaf').length), 1200);
                     break;
                 case 'water':
-                    for (let i = 0; i < 22; i++) setTimeout(createBubble, i * 180);
-                    particleIntervals.push(setInterval(createBubble, 1040));
+                    for (let i = 0; i < 15; i++) setTimeout(createBubble, i * 240);
+                    particleIntervals.push(setInterval(createBubble, 1500));
                     console.log('Water bubbles started');
                     setTimeout(() => console.log('bubble count', document.querySelectorAll('.bubble').length), 1200);
                     break;

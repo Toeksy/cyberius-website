@@ -184,6 +184,9 @@
         opacity: 0;
       }
       5% { opacity: 0.9; }
+      25% { transform: translateY(27vh) translateX(14px) rotate(90deg); }
+      50% { transform: translateY(58vh) translateX(-10px) rotate(180deg); }
+      75% { transform: translateY(85vh) translateX(10px) rotate(270deg); }
       95% { opacity: 0.9; }
       100% {
         transform: translateY(110vh) translateX(30px) rotate(360deg);
@@ -1666,10 +1669,10 @@
         el.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
         el.style.left = Math.random() * 100 + '%';
         el.style.fontSize = (0.5 + Math.random() * 0.6) + 'em';
-        el.style.animationDuration = (8 + Math.random() * 6) + 's';
+        el.style.animationDuration = (12 + Math.random() * 8) + 's';
         el.style.animationDelay = Math.random() * 2 + 's';
         particlesContainer.appendChild(el);
-        setTimeout(() => el.remove(), 16000);
+        setTimeout(() => el.remove(), 26000);
       }
       
       function createLeaf() {
@@ -1704,29 +1707,29 @@
         switch(theme) {
           case 'winter':
             // Create initial batch of snowflakes
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 4; i++) {
               setTimeout(createSnowflake, i * 150);
             }
             // Continue creating snowflakes
-            particleIntervals.push(setInterval(createSnowflake, 1600));
+            particleIntervals.push(setInterval(createSnowflake, 2300));
             break;
             
           case 'nature':
             // Create initial batch of leaves
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
               setTimeout(createLeaf, i * 200);
             }
             // Continue creating leaves
-            particleIntervals.push(setInterval(createLeaf, 2400));
+            particleIntervals.push(setInterval(createLeaf, 3400));
             break;
             
           case 'water':
             // Create initial batch of bubbles
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 3; i++) {
               setTimeout(createBubble, i * 180);
             }
             // Continue creating bubbles
-            particleIntervals.push(setInterval(createBubble, 1800));
+            particleIntervals.push(setInterval(createBubble, 2600));
             break;
             
           default:

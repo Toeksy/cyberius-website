@@ -34,7 +34,7 @@
     .fit-stage {
       position: fixed;
       inset: 0;
-      padding: 24px;
+      padding: 0;
       display: grid;
       place-items: center;
     }
@@ -63,6 +63,7 @@
       overflow: hidden;
       min-height: 0;
       --contentScale: 1;
+      transform-origin: center;
     }
 
     .fit-content {
@@ -999,7 +1000,9 @@
 
     updateLivePreview();
 
-    // Fit-to-viewport: scale content (not the clipping card) so nothing gets cut off on Android.
+    // Fit-to-viewport: scale the entire card (including browser mock + contacts) to fill viewport.
+    const BASE_W = 1050;
+    const BASE_H = 600;
     const fitStage = document.getElementById('fitStage');
     const card = document.querySelector('.card');
     const fitContent = document.getElementById('fitContent');
@@ -1028,42 +1031,22 @@
       fitRaf = 0;
       if (!fitStage || !card || !fitContent) return;
 
-      // Reset before measuring.
+      // Reset before measuring: set base dimensions, clear transforms.
       card.style.setProperty('--contentScale', '1');
+      card.style.width = `${BASE_W}px`;
+      card.style.height = `${BASE_H}px`;
+      card.style.transform = '';
 
       const box = stageContentBox();
 
-      // If aspect ratio is fixed, clamp card width by available height.
-      if (isFixedAspectRatio() && box.w > 0 && box.h > 0) {
-        const ratio = 1050 / 600;
-        const maxW = Math.min(1050, box.w, box.h * ratio);
-        card.style.width = `${Math.max(1, Math.floor(maxW))}px`;
-      } else {
-        card.style.width = '';
-      }
-
-      let contentScale = 1;
-
-      // If the right column overflows, scale content down until it fits.
-      if (rightCol) {
-        const overflow = rightCol.scrollHeight - rightCol.clientHeight;
-        if (overflow > 1) contentScale = Math.min(contentScale, rightCol.clientHeight / rightCol.scrollHeight);
-      }
-
-      // Extra safety: scale by overall inner overflow as well.
-      if (inner) {
-        const overflow = inner.scrollHeight - inner.clientHeight;
-        if (overflow > 1) contentScale = Math.min(contentScale, inner.clientHeight / inner.scrollHeight);
-      }
-
-      // Ensure the card itself fits into the available content box.
+      // Scale the whole card to fill the available viewport (width/height driven).
+      let scaleToFit = 1;
       if (box.w > 0 && box.h > 0) {
-        const cardW = card.offsetWidth || 1;
-        const cardH = card.offsetHeight || 1;
-        contentScale = Math.min(contentScale, 1, box.w / cardW, box.h / cardH);
+        scaleToFit = Math.min(box.w / BASE_W, box.h / BASE_H);
       }
 
-      card.style.setProperty('--contentScale', String(contentScale));
+      // Apply transform on the card (center-origin) to fill space; no upper cap.
+      card.style.transform = `scale(${scaleToFit})`;
     }
 
     function requestFit() {

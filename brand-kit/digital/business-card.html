@@ -34,9 +34,10 @@
     .fit-stage {
       position: fixed;
       inset: 0;
-      padding: 0;
-      display: grid;
-      place-items: center;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Short viewports (e.g., phone landscape): avoid vertical centering.
@@ -50,8 +51,11 @@
     }
 
     .card {
-      width: min(1050px, 100%);
-      aspect-ratio: 1050 / 600;
+      /* Fill viewport while keeping aspect ratio */
+      width: min(calc((100dvh - 24px) * 1.75), calc(100vw - 24px));
+      height: min(calc((100vw - 24px) / 1.75), calc(100dvh - 24px));
+      max-width: 1050px;
+      max-height: 600px;
       border-radius: 26px;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       border: 2px solid rgba(var(--accent-rgb), 0.22);
@@ -61,9 +65,7 @@
         0 0 90px rgba(var(--accent-rgb), 0.08);
       position: relative;
       overflow: hidden;
-      min-height: 0;
-      --contentScale: 1;
-      transform-origin: center;
+      flex-shrink: 0;
     }
 
     .fit-content {
@@ -1029,24 +1031,15 @@
 
     function fitNow() {
       fitRaf = 0;
-      if (!fitStage || !card || !fitContent) return;
+      if (!fitStage || !card) return;
 
-      // Reset before measuring: set base dimensions, clear transforms.
-      card.style.setProperty('--contentScale', '1');
-      card.style.width = `${BASE_W}px`;
-      card.style.height = `${BASE_H}px`;
-      card.style.transform = '';
-
-      const box = stageContentBox();
-
-      // Scale the whole card to fill the available viewport (width/height driven).
-      let scaleToFit = 1;
-      if (box.w > 0 && box.h > 0) {
-        scaleToFit = Math.min(box.w / BASE_W, box.h / BASE_H);
+      // CSS handles scaling via width/height with dvh/vw units.
+      // This function just triggers reflow if needed and can be used for future enhancements.
+      const vp = window.visualViewport;
+      if (vp) {
+        // Update CSS custom properties for mobile keyboard etc.
+        document.documentElement.style.setProperty('--vp-height', vp.height + 'px');
       }
-
-      // Apply transform on the card (center-origin) to fill space; no upper cap.
-      card.style.transform = `scale(${scaleToFit})`;
     }
 
     function requestFit() {

@@ -2398,13 +2398,14 @@
         });
         
         function animateLogo() {
+            if (!logo3d) return; // Skip if element doesn't exist
             const rotateX = logoMouseY * 15;
             const rotateY = logoMouseX * 15;
             logo3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             requestAnimationFrame(animateLogo);
         }
         
-        animateLogo();
+        if (logo3d) animateLogo();
 
     </script>
 

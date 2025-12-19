@@ -1164,6 +1164,19 @@
             line-height: 1.7;
         }
 
+        .scan-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .scan-list li {
+            margin-bottom: 0.6rem;
+        }
+
         .service-tags {
             display: flex;
             flex-wrap: wrap;
@@ -2074,12 +2087,12 @@
                             <circle cx="12" cy="12" r="2"/>
                         </svg>
                     </div>
-                    <h3 style="color: #e2e8f0; font-size: 1.25rem; margin-bottom: 0.75rem;" data-i18n="startCard1Title">Rajattu kartoitus</h3>
-                    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="startCard1Body">Aloitetaan kartoituksella, joka paljastaa nykytilan, riskit ja mahdollisuudet. Ei sitoumuksia jatkosta.</p>
+                    <h3 style="color: #e2e8f0; font-size: 1.25rem; margin-bottom: 0.75rem;" data-i18n="startCard1Title">🟦 Codesphere Scan™</h3>
+                    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;" data-i18n="startCard1Body">Maksullinen, rajattu ja dokumentoitu kartoitus, joka tekee tilanteesta näkyvän, ymmärrettävän ja hallittavan.</p>
                     <ul style="color: #94a3b8; font-size: 0.9rem; list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">✓ <span data-i18n="startCard1Li1">Selkeä laajuus ja hinta etukäteen</span></li>
-                        <li style="margin-bottom: 0.5rem;">✓ <span data-i18n="startCard1Li2">Konkreettinen raportti tuloksena</span></li>
-                        <li>✓ <span data-i18n="startCard1Li3">Päätös jatkosta vasta sen jälkeen</span></li>
+                        <li style="margin-bottom: 0.5rem;">✓ <span data-i18n="startCard1Li1">Kiinteä hinta ja selkeä rajaus</span></li>
+                        <li style="margin-bottom: 0.5rem;">✓ <span data-i18n="startCard1Li2">Päätöksenteon työkalu – ei myyntikikka</span></li>
+                        <li>✓ <span data-i18n="startCard1Li3">Raportti jää teille riippumatta jatkosta</span></li>
                     </ul>
                 </div>
                 <div class="fade-in" style="background: rgba(15, 23, 42, 0.6); border-radius: 16px; padding: 2rem; border: 1px solid rgba(var(--accent-rgb), 0.25);">
@@ -2097,6 +2110,89 @@
                         <li>✓ <span data-i18n="startCard2Li3">Vastuu säilyy meillä</span></li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Codesphere Scan™ Section -->
+    <section id="scan">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <h2 data-i18n="scanTitle">🟦 Codesphere Scan™</h2>
+                <p data-i18n="scanBody">Selkeyttävä kartoitus digitaalisesta kokonaisuudesta – ennen kuin teet vääriä päätöksiä.</p>
+            </div>
+
+            <div class="services-grid" style="margin-top: 2rem;">
+                <div class="service-card fade-in">
+                    <div class="service-icon" style="background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.95), var(--primary-light));">🔍</div>
+                    <h3 data-i18n="scanQuickTitle">Ytimekkäästi</h3>
+                    <p data-i18n="scanQuickBody">Rajattu ja dokumentoitu kartoitus, joka tuottaa konkreettisen raportin – ilman pakkoa jatkoon.</p>
+                    <ul class="scan-list">
+                        <li>✓ <span data-i18n="scanQuickLi1">Maksullinen, kiinteähintainen kokonaisuus</span></li>
+                        <li>✓ <span data-i18n="scanQuickLi2">Ei toteutusprojekti</span></li>
+                        <li>✓ <span data-i18n="scanQuickLi3">Päätöksenteon työkalu</span></li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon" style="background: linear-gradient(135deg, var(--primary-light), var(--accent));">🧩</div>
+                    <h3 data-i18n="scanFitTitle">Sopii kun</h3>
+                    <ul class="scan-list" style="margin-top: 0.25rem;">
+                        <li>• <span data-i18n="scanFitLi1">"Järjestelmiä on liikaa"</span></li>
+                        <li>• <span data-i18n="scanFitLi2">"Kukaan ei näe kokonaisuutta"</span></li>
+                        <li>• <span data-i18n="scanFitLi3">"Tekninen velka painaa"</span></li>
+                        <li>• <span data-i18n="scanFitLi4">"AI/automaatio kiinnostaa, mutta järkevästi"</span></li>
+                        <li>• <span data-i18n="scanFitLi5">"Tietoturva mietityttää, mutta ilman hysteriaa"</span></li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon" style="background: linear-gradient(135deg, var(--accent), var(--success));">🗺️</div>
+                    <h3 data-i18n="scanStepsTitle">Miten se etenee</h3>
+                    <ul class="scan-list" style="margin-top: 0.25rem;">
+                        <li><strong>1.</strong> <span data-i18n="scanStep1">Aloituskeskustelu</span></li>
+                        <li><strong>2.</strong> <span data-i18n="scanStep2">Kevyt tiedonkeruu</span></li>
+                        <li><strong>3.</strong> <span data-i18n="scanStep3">Analyysi</span></li>
+                        <li><strong>4.</strong> <span data-i18n="scanStep4">Raportti + priorisointi</span></li>
+                        <li style="margin-top: 0.25rem;">⏱ <span data-i18n="scanDuration">Kesto: 1–2 viikkoa, 1–2 tapaamista</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="services-grid" style="margin-top: 1.5rem;">
+                <div class="service-card fade-in">
+                    <h3 data-i18n="scanIncludesTitle">Mitä Scan™ sisältää</h3>
+                    <ul class="scan-list" style="margin-top: 0.25rem;">
+                        <li>✓ <span data-i18n="scanInc1">Tekninen kokonaiskuva (järjestelmät, työkalut, integraatiot)</span></li>
+                        <li>✓ <span data-i18n="scanInc2">Prosessit & käyttö (kitkat, riskit, päällekkäisyydet)</span></li>
+                        <li>✓ <span data-i18n="scanInc3">Tietoturvan perusrealismi (ilmeiset riskit, ymmärrettävä taso)</span></li>
+                        <li>✓ <span data-i18n="scanInc4">AI & automaatio – järkifiltteri (missä auttaa / missä ei)</span></li>
+                        <li>✓ <span data-i18n="scanInc5">Dokumentaation tila (minimitaso ja suositus)</span></li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <h3 data-i18n="scanExcludesTitle">Mitä Scan™ ei sisällä</h3>
+                    <ul class="scan-list" style="margin-top: 0.25rem;">
+                        <li>• <span data-i18n="scanExc1">Ei toteutusta</span></li>
+                        <li>• <span data-i18n="scanExc2">Ei myyntipakkoa jatkoon</span></li>
+                        <li>• <span data-i18n="scanExc3">Ei juridista auditointia tai sertifiointeja</span></li>
+                        <li>• <span data-i18n="scanExc4">Ei 24/7-tukea</span></li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <h3 data-i18n="scanOutcomeTitle">Lopputulos</h3>
+                    <p data-i18n="scanOutcomeBody">Saatte kirjallisen raportin: nykytila, riskit/pullonkaulat, kehityskohteet, priorisointi ja suositus (tee itse / tee jonkun kanssa / tee Codespheren kanssa). Raportti jää teille riippumatta jatkosta.</p>
+                    <div style="margin-top: 1rem; padding: 1rem; border-radius: 12px; border: 1px solid rgba(var(--accent-rgb), 0.20); background: rgba(var(--accent-rgb), 0.06);">
+                        <div style="font-weight: 800; margin-bottom: 0.25rem;" data-i18n="scanPricingTitle">Kiinteä hinta (haarukka)</div>
+                        <div style="color: var(--text-muted);" data-i18n="scanPricingBody">Pienet toimijat: 1 500 – 2 500 € • Monimutkaisempi ympäristö: 3 000 – 5 000 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in" style="text-align: center; margin-top: 2.25rem;">
+                <a href="#yhteystiedot" class="btn btn-primary" data-i18n="scanCta">Varaa aloituskeskustelu</a>
             </div>
         </div>
     </section>
@@ -3061,16 +3157,58 @@
 
                     startTitle: 'Yhteistyö alkaa hallitusti',
                     startBody: 'Kaikki kokonaisuudet eivät ala suurena hankkeena. Rajattu aloitus mahdollistaa turvallisen käynnistyksen – ilman statustappiota.',
-                    startCard1Title: 'Rajattu kartoitus',
-                    startCard1Body: 'Aloitetaan kartoituksella, joka paljastaa nykytilan, riskit ja mahdollisuudet. Ei sitoumuksia jatkosta.',
-                    startCard1Li1: 'Selkeä laajuus ja hinta etukäteen',
-                    startCard1Li2: 'Konkreettinen raportti tuloksena',
-                    startCard1Li3: 'Päätös jatkosta vasta sen jälkeen',
+                    startCard1Title: '🟦 Codesphere Scan™',
+                    startCard1Body: 'Maksullinen, rajattu ja dokumentoitu kartoitus, joka tekee tilanteesta näkyvän, ymmärrettävän ja hallittavan.',
+                    startCard1Li1: 'Kiinteä hinta ja selkeä rajaus',
+                    startCard1Li2: 'Päätöksenteon työkalu – ei myyntikikka',
+                    startCard1Li3: 'Raportti jää teille riippumatta jatkosta',
                     startCard2Title: 'Kokonaisvastuullinen kumppanuus',
                     startCard2Body: 'Kun luottamus on rakennettu, voimme ottaa laajemman vastuun digitaalisesta kokonaisuudesta.',
                     startCard2Li1: 'Jatkuva kehitys ja ylläpito',
                     startCard2Li2: 'Dokumentoitu osaamisen siirto',
                     startCard2Li3: 'Vastuu säilyy meillä',
+
+                    scanTitle: '🟦 Codesphere Scan™',
+                    scanBody: 'Selkeyttävä kartoitus digitaalisesta kokonaisuudesta – ennen kuin teet vääriä päätöksiä.',
+
+                    scanQuickTitle: 'Ytimekkäästi',
+                    scanQuickBody: 'Rajattu ja dokumentoitu kartoitus, joka tuottaa konkreettisen raportin – ilman pakkoa jatkoon.',
+                    scanQuickLi1: 'Maksullinen, kiinteähintainen kokonaisuus',
+                    scanQuickLi2: 'Ei toteutusprojekti',
+                    scanQuickLi3: 'Päätöksenteon työkalu',
+
+                    scanFitTitle: 'Sopii kun',
+                    scanFitLi1: '"Järjestelmiä on liikaa"',
+                    scanFitLi2: '"Kukaan ei näe kokonaisuutta"',
+                    scanFitLi3: '"Tekninen velka painaa"',
+                    scanFitLi4: '"AI/automaatio kiinnostaa, mutta järkevästi"',
+                    scanFitLi5: '"Tietoturva mietityttää, mutta ilman hysteriaa"',
+
+                    scanStepsTitle: 'Miten se etenee',
+                    scanStep1: 'Aloituskeskustelu',
+                    scanStep2: 'Kevyt tiedonkeruu',
+                    scanStep3: 'Analyysi',
+                    scanStep4: 'Raportti + priorisointi',
+                    scanDuration: 'Kesto: 1–2 viikkoa, 1–2 tapaamista',
+
+                    scanIncludesTitle: 'Mitä Scan™ sisältää',
+                    scanInc1: 'Tekninen kokonaiskuva (järjestelmät, työkalut, integraatiot)',
+                    scanInc2: 'Prosessit & käyttö (kitkat, riskit, päällekkäisyydet)',
+                    scanInc3: 'Tietoturvan perusrealismi (ilmeiset riskit, ymmärrettävä taso)',
+                    scanInc4: 'AI & automaatio – järkifiltteri (missä auttaa / missä ei)',
+                    scanInc5: 'Dokumentaation tila (minimitaso ja suositus)',
+
+                    scanExcludesTitle: 'Mitä Scan™ ei sisällä',
+                    scanExc1: 'Ei toteutusta',
+                    scanExc2: 'Ei myyntipakkoa jatkoon',
+                    scanExc3: 'Ei juridista auditointia tai sertifiointeja',
+                    scanExc4: 'Ei 24/7-tukea',
+
+                    scanOutcomeTitle: 'Lopputulos',
+                    scanOutcomeBody: 'Saatte kirjallisen raportin: nykytila, riskit/pullonkaulat, kehityskohteet, priorisointi ja suositus (tee itse / tee jonkun kanssa / tee Codespheren kanssa). Raportti jää teille riippumatta jatkosta.',
+                    scanPricingTitle: 'Kiinteä hinta (haarukka)',
+                    scanPricingBody: 'Pienet toimijat: 1 500 – 2 500 € • Monimutkaisempi ympäristö: 3 000 – 5 000 €',
+                    scanCta: 'Varaa aloituskeskustelu',
 
                     partnerTitle: 'Joissain hankkeissa toimimme kumppanina',
                     partnerBody: 'Tietyissä projekteissa voimme jakaa riskin ja hyödyn. Tämä ei ole alennus – se on strateginen yhteistyömalli.',
@@ -3086,10 +3224,10 @@
 
                     ctaTitle: 'Valitse aloitustapa',
                     ctaBody: 'Keskustellaan organisaationne tarpeista – ei myyntipuhetta, vaan aito kartoitus.',
-                    ctaBtn1: 'Aloita rajatulla kartoituksella',
+                    ctaBtn1: 'Aloita Codesphere Scan™:lla',
                     ctaBtn2: 'Keskustele kokonaisuudesta',
                     ctaNote: 'Vastaamme yleensä saman päivän aikana',
-                    ctaMail1Href: 'mailto:contact@codesphere.fi?subject=Rajattu%20kartoitus%20-%20yhteydenotto',
+                    ctaMail1Href: 'mailto:contact@codesphere.fi?subject=Codesphere%20Scan%20-%20yhteydenotto',
                     ctaMail2Href: 'mailto:contact@codesphere.fi?subject=Kokonaisuus%20-%20yhteydenotto',
 
                     contactTitle: 'Yhteystiedot',
@@ -3188,16 +3326,58 @@
 
                     startTitle: 'Collaboration starts in a controlled way',
                     startBody: 'Not every initiative starts as a large project. A scoped start enables safe momentum — without loss of status.',
-                    startCard1Title: 'Scoped assessment',
-                    startCard1Body: 'We start with an assessment that reveals the current state, risks, and opportunities. No commitments beyond that.',
-                    startCard1Li1: 'Clear scope and price upfront',
-                    startCard1Li2: 'Concrete report as the outcome',
-                    startCard1Li3: 'Decide on next steps afterward',
+                    startCard1Title: '🟦 Codesphere Scan™',
+                    startCard1Body: 'A paid, scoped, and documented assessment that makes your situation visible, understandable, and manageable.',
+                    startCard1Li1: 'Fixed price and clear scope',
+                    startCard1Li2: 'A decision-making tool — not a sales trick',
+                    startCard1Li3: 'You keep the report regardless of next steps',
                     startCard2Title: 'Accountable partnership',
                     startCard2Body: 'Once trust is built, we can take broader responsibility for your digital whole.',
                     startCard2Li1: 'Continuous development and maintenance',
                     startCard2Li2: 'Documented knowledge transfer',
                     startCard2Li3: 'Accountability stays with us',
+
+                    scanTitle: '🟦 Codesphere Scan™',
+                    scanBody: 'A clarifying assessment of your digital whole — before you make the wrong decisions.',
+
+                    scanQuickTitle: 'In short',
+                    scanQuickBody: 'A scoped, documented assessment that delivers a concrete report — with no obligation to continue.',
+                    scanQuickLi1: 'Paid, fixed-fee package',
+                    scanQuickLi2: 'Not an implementation project',
+                    scanQuickLi3: 'A decision-making tool',
+
+                    scanFitTitle: 'Great fit when',
+                    scanFitLi1: '"We have too many systems"',
+                    scanFitLi2: '"No one sees the whole picture"',
+                    scanFitLi3: '"Technical debt is piling up"',
+                    scanFitLi4: '"AI/automation interests us, but sensibly"',
+                    scanFitLi5: '"Security concerns us, but we want realism"',
+
+                    scanStepsTitle: 'How it works',
+                    scanStep1: 'Kickoff conversation',
+                    scanStep2: 'Lightweight information gathering',
+                    scanStep3: 'Analysis',
+                    scanStep4: 'Report + prioritization',
+                    scanDuration: 'Duration: 1–2 weeks, 1–2 meetings',
+
+                    scanIncludesTitle: 'What Scan™ includes',
+                    scanInc1: 'Technical overview (systems, tools, integrations)',
+                    scanInc2: 'Processes & usage (friction, risks, overlaps)',
+                    scanInc3: 'Security realism (obvious risks, understandable level)',
+                    scanInc4: 'AI & automation filter (where it helps / where it doesn’t)',
+                    scanInc5: 'Documentation status (minimum baseline + recommendation)',
+
+                    scanExcludesTitle: 'What Scan™ does not include',
+                    scanExc1: 'No implementation',
+                    scanExc2: 'No sales pressure to continue',
+                    scanExc3: 'No legal audit or certifications',
+                    scanExc4: 'No 24/7 support',
+
+                    scanOutcomeTitle: 'Outcome',
+                    scanOutcomeBody: 'You receive a written report: current state, risks/bottlenecks, concrete improvements, prioritization, and a recommendation (do it yourself / do it with someone / do it with Codesphere). You keep the report regardless of next steps.',
+                    scanPricingTitle: 'Fixed price (range)',
+                    scanPricingBody: 'Small orgs: €1,500–€2,500 • More complex: €3,000–€5,000',
+                    scanCta: 'Book a kickoff conversation',
 
                     partnerTitle: 'In some projects, we operate as a partner',
                     partnerBody: 'In selected cases we can share both risk and upside. This is not a discount — it is a strategic collaboration model.',
@@ -3213,10 +3393,10 @@
 
                     ctaTitle: 'Choose how to start',
                     ctaBody: 'Let’s discuss your organization’s needs — no sales pitch, just a real assessment.',
-                    ctaBtn1: 'Start with a scoped assessment',
+                    ctaBtn1: 'Start with Codesphere Scan™',
                     ctaBtn2: 'Discuss the bigger picture',
                     ctaNote: 'We typically reply the same day',
-                    ctaMail1Href: 'mailto:contact@codesphere.fi?subject=Scoped%20assessment%20-%20contact',
+                    ctaMail1Href: 'mailto:contact@codesphere.fi?subject=Codesphere%20Scan%20-%20contact',
                     ctaMail2Href: 'mailto:contact@codesphere.fi?subject=Full%20scope%20-%20contact',
 
                     contactTitle: 'Contact',

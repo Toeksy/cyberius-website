@@ -113,9 +113,41 @@ Tämä tiedosto tallentaa kaikki TRM 10x -sessionien opit ja päätökset. Jokai
 **Hyväksymiskriteerit täyttyneet**:
 - ✅ (Täytä hyväksymiskriteerit tähän)
 
+
+
+---
+
+## Session: 2025-12-19 – Lisää Codesphere Scan™ + positiointi sivulle (index.html)
+
+**Ongelma**: Lisää Codesphere Scan™ + positiointi sivulle (index.html)
+
+**Ratkaisu**: Lisätty Codesphere Scan™-osio ja 1-sivun positiointi-osio (FI+EN i18n), CTA:t ohjaavat yhteystietoihin ja mailto-subjectit päivitetty; ei uusia sivuja/teemoja.
+
+**Opit**:
+
+- **Kierros 1**: Scope: Scan™ + 1-sivuinen positiointi osaksi index.html. Ei uusia sivuja/teemoja/värejä; käytetään olemassa olevia .section-header + .services-grid + .service-card. CTA ohjaa #yhteystiedot/mailto.
+- **Kierros 2**: Sijoittelu: Scan-osio omana sectionina #scan heti #aloitus jälkeen (luonteva 'ensimmäinen askel'), ennen #kumppanuus. Ei uutta nav-linkkiä; CTA painikkeet ohjaa #yhteystiedot ja mailto-subjectit 'Codesphere Scan'.
+- **Kierros 3**: Sisältörajat lukittu: Scan (kenelle, sisältää/ei sisällä, lopputulos, kesto, kiinteä hintahaarukka) + Positiointi (mikä Codesphere on, kenelle/ei kenelle, erot muihin 'myy toteutusta' vs 'myy ymmärrystä', palvelumalli: Scan → rajattu rakentaminen → kevyt kumppanuus).
+- **Kierros 4**: UI: Lisätään positiointi omana sectionina (#positiointi) Scanin jälkeen. Käytetään nykyisiä primitivejä (.section-header + .services-grid + .service-card + .scan-list). Ei uusia värejä/komponentteja, vain sisältö ja kevyt highlight-box palvelumallille.
+- **Kierros 5**: Copy: Scan + positiointi korostaa 'ei myyntikikka', 'rajattu', 'raportti jää' ja 'omistajuus asiakkaalla'. Positiointi tiivistetty 3 korttiin (mikä/kenelle/miten erotumme+palvelumalli) jotta sivu pysyy skaalattavana.
+- **Kierros 6**: I18N: Lisättiin pos*-avaimet FI/EN (otsikot, kuvaukset, bulletit, palvelumalli). Päivitettiin myös CTA:n oletus-href ja teksti vastaamaan Scan-subjectia jotta initial render ei näytä vanhaa 'Rajattu kartoitus'.
+- **Kierros 7**: Responsiivisuus: Uudet osiot hyödyntää samaa services-grid auto-fit -layoutia (desktop 3 korttia, mobile 1). Ajettu node tools/test_mobile.js: hero/mobile näkyvyys OK; Scan/positiointi on listapohjaista eikä vaadi uusia breakpointteja.
+- **Kierros 8**: Saavutettavuus: Otsikkohierarkia säilyy (section h2 + card h3). Listat ovat oikeita `ul`-listoja. CTA-teksti selkeä. ™ käytetty vain nimessä, ei vaikuta ariaan; ikonit ovat emoji/tekstinä eikä vaadi alt-tekstiä.
+- **Kierros 9**: QA: ankkurit #scan/#positiointi/#yhteystiedot ok, CTA mailto-subjectit ok; mobiilitesti (portrait+landscape) aiemmin OK.
+- **Kierros 10**: Julkaisuvalmis: sulje sessio, aja trm_check idle-tilassa, commit+push (index.html + trm/memory.md).
+
+**Hyväksymiskriteerit täyttyneet**:
+
+- ✅ `index.html` sisältää uudet `#scan` ja `#positiointi` -osiot
+- ✅ FI/EN i18n avaimet lisätty ja CTA-hrefit päivitetty oikein
+- ✅ Ankkurit `#scan/#positiointi/#yhteystiedot` ja mailto-subjectit tarkistettu
+- ✅ `tools/trm_check.py` läpäisee (sessio suljettu, idle)
+
 ## (Lisää tulevat sessionit tänne)
 
 **Muistilista**:
+
 - Tallenna jokaisen 10-kierroksen session lopputulos.
 - Päivitä `trm/state.json` -tila ennen ja jälkeen session.
 - Hyödynnä aikaisempia oppeja seuraavissa tehtävissä.
+

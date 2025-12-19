@@ -9,7 +9,7 @@ Tässä demossa näytetään, miten TRM 10× -järjestelmää käytetään oikea
 ## 1. ALOITA SESSIO
 
 ```powershell
-PS W:\Codex\Codesphere\website> python tools/trm_start_session.py "Lisää Team-osio index.html – esittelee Timo, Matti, Mika dark-theme-tyylillä"
+PS W:\Codex\Codesphere\website> python tools/trm_start_session.py "Lisää Team-osio index.html – esittelee Timo, Matti dark-theme-tyylillä"
 ```
 
 **Output**:
@@ -18,7 +18,7 @@ PS W:\Codex\Codesphere\website> python tools/trm_start_session.py "Lisää Team-
 ║  🚀 TRM-AJATTELUMALLI (Thinking, Reasoning, Memory)        ║
 ╚════════════════════════════════════════════════════════════╝
 
-Tehtävä: Lisää Team-osio index.html – esittelee Timo, Matti, Mika dark-theme-tyylillä
+Tehtävä: Lisää Team-osio index.html – esittelee Timo, Matti dark-theme-tyylillä
 Kierrokset: 10
 
 ─────────────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ Kierrokset: 10
 - Tutkii `index.html` -rakennetta (hero, features, footer).
 - Tutkii `styles.css` (dark theme, `.card`-tyylit, accent-värit).
 - Päättää: Team-osio sijoittuu Features-osion ja footerin väliin.
-- Layout: 3-sarake grid (Timo, Matti, Mika).
+- Layout: 2-sarake grid (Timo, Matti).
 
 **Päivitä muisti**:
 ```powershell
@@ -95,7 +95,7 @@ PS W:\Codex\Codesphere\website> python tools/trm_update_memory.py 2 "Lisätään
       <p class="role">Lead Developer</p>
       <p class="bio">...</p>
     </div>
-    <!-- Matti, Mika -->
+    <!-- Matti -->
   </div>
 </section>
 ```
@@ -257,7 +257,7 @@ PS W:\Codex\Codesphere\website> python tools/trm_finalize_session.py "Team-osio 
 ║  ✅ TRM-SESSIO SULJETTU                                     ║
 ╚════════════════════════════════════════════════════════════╝
 
-Tehtävä: Lisää Team-osio index.html – esittelee Timo, Matti, Mika dark-theme-tyylillä
+Tehtävä: Lisää Team-osio index.html – esittelee Timo, Matti dark-theme-tyylillä
 Kierroksia suoritettu: 10
 Malli: Thinking ➜ Reasoning ➜ Memory
 
@@ -291,7 +291,7 @@ PS W:\Codex\Codesphere\website> cat trm/memory.md | Select-String -Pattern "Sess
 
 **Output**:
 ```
-## Session: 2025-12-18 – Lisää Team-osio index.html – esittelee Timo, Matti, Mika dark-theme-tyylillä
+## Session: 2025-12-18 – Lisää Team-osio index.html – esittelee Timo, Matti dark-theme-tyylillä
 ```
 
 **→ Opit tallennettu! Seuraava projekti hyötyy näistä oppeista (esim. avatar-tyyli, grid-layout, hover-efekti).**

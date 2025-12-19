@@ -11,7 +11,7 @@ Tässä sessiossa korjattiin digitaalisen käyntikortin (`business-card.html`) s
 
 ## Ongelmat
 
-1. **Android-skaalaus ei toiminut** — käyntikortin sisältö leikkautui eikä Mika Leppäsen yhteystiedot näkyneet
+1. **Android-skaalaus ei toiminut** — käyntikortin sisältö leikkautui eikä kaikkien yhteystiedot näkyneet
 2. **Selain-mock näytti vain staattisen kuvan** mobiililla — live-kotisivut näkyivät vain desktopilla (>901px)
 3. **Cache-ongelma** — GitHub Pages deployasi oikein, mutta Android-selain piti vanhaa versiota välimuistissa
 

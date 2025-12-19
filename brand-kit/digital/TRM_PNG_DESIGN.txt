@@ -8,7 +8,7 @@
 ║  ?? TRM-AJATTELUMALLI (Thinking, Reasoning, Memory)        ║
 ╚════════════════════════════════════════════════════════════╝
 
-Ongelma: PNG-käyntikortin design Codesphere-teeman mukaiseksi: 1050x600. Hyödynnä business-card.html (paletti, border, shadow, typografia). Vasen: iso Codesphere-logo + abstrakti cyan glow/sheeni (ei avaruus/tähtitausta). Oikea: selkeä Yhteystiedot-osio (Timo/Matti/Mika) ja accent-linjat. Lopputulos premium ja luettava.
+Ongelma: PNG-käyntikortin design Codesphere-teeman mukaiseksi: 1050x600. Hyödynnä business-card.html (paletti, border, shadow, typografia). Vasen: iso Codesphere-logo + abstrakti cyan glow/sheeni (ei avaruus/tähtitausta). Oikea: selkeä Yhteystiedot-osio (Timo/Matti) ja accent-linjat. Lopputulos premium ja luettava.
 Kierrokset: 10
 
 ─────────────────────────────────────────────────────────────
@@ -151,6 +151,6 @@ Malli: Thinking  Reasoning  Memory
 
 ?? TALLENNA TULOS:
 
-   .\scripts\cm.ps1 track 'TRM-analyysi: PNG-käyntikortin design Codesphere-teeman mukaiseksi: 1050x600. Hyödynnä business-card.html (paletti, border, shadow, typografia). Vasen: iso Codesphere-logo + abstrakti cyan glow/sheeni (ei avaruus/tähtitausta). Oikea: selkeä Yhteystiedot-osio (Timo/Matti/Mika) ja accent-linjat. Lopputulos premium ja luettava.' '[ratkaisu]'
+   .\scripts\cm.ps1 track 'TRM-analyysi: PNG-käyntikortin design Codesphere-teeman mukaiseksi: 1050x600. Hyödynnä business-card.html (paletti, border, shadow, typografia). Vasen: iso Codesphere-logo + abstrakti cyan glow/sheeni (ei avaruus/tähtitausta). Oikea: selkeä Yhteystiedot-osio (Timo/Matti) ja accent-linjat. Lopputulos premium ja luettava.' '[ratkaisu]'
 
 

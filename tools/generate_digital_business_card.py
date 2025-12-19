@@ -343,12 +343,6 @@ def main() -> None:
             phone_display="puh +358 40 193 2714",
             phone_tel="+358401932714",
         ),
-        Person(
-            name="Mika Leppänen",
-            title="Kyberturvallisuusasiantuntija • Asiantuntijatodistelu (tuomioistuimet)",
-            phone_display="puh +358 46 558 1732",
-            phone_tel="+358465581732",
-        ),
     ]
 
     out_dir = base / "brand-kit" / "digital"

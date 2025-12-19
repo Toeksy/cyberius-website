@@ -6,7 +6,7 @@ Tämä tiedosto tallentaa kaikki TRM 10x -sessionien opit ja päätökset. Jokai
 
 ## Session: 2025-12-18 – PNG-käyntikortin design (business-card.png)
 
-**Ongelma**: Luo 1050×600 PNG-käyntikortti Codesphere-teeman mukaisesti. Vasen puoli: iso logo + abstrakti syaani-glow/sheeni (ei avaruus/tähtitausta). Oikea puoli: selkeät yhteystiedot (Timo/Matti/Mika) premium-tyylillä.
+**Ongelma**: Luo 1050×600 PNG-käyntikortti Codesphere-teeman mukaisesti. Vasen puoli: iso logo + abstrakti syaani-glow/sheeni (ei avaruus/tähtitausta). Oikea puoli: selkeät yhteystiedot (Timo/Matti) premium-tyylillä.
 
 **Ratkaisu**:
 - Hyödynnettiin `business-card.html` -palettia ja typografiaa.
